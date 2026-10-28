@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Wedding Invitation Guest Personalizer | Mohammed Dawood Reception & Nikah</title>
+  <meta name="description" content="Generate personalized high-resolution 2-page wedding invitation PDFs with custom guest names in elegant calligraphy script.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=MonteCarlo&family=Outfit:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <!-- Background Glow & Arabesque Ornamentation -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="bismillah-badge">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+      <h1 class="main-title">Wedding Invitation Personalizer</h1>
+      <p class="subtitle">Personalize and generate pristine 2-page Wedding Invitation PDFs with matching calligraphy</p>
+      
+      <!-- Event Selector Tabs -->
+      <div class="event-selector-container">
+        <div class="event-toggle" id="eventToggleGroup">
+          <button type="button" class="event-btn active" id="btnValima" data-event="valima">
+            <span class="event-icon">⚜️</span>
+            <span class="event-text">
+              <strong>Daawat-e-Valima</strong>
+              <small>12th Nov 2026 • Anmol Convention</small>
+            </span>
+          </button>
+          <button type="button" class="event-btn" id="btnNikah" data-event="nikah">
+            <span class="event-icon">✨</span>
+            <span class="event-text">
+              <strong>Daawat-e-Nikah</strong>
+              <small>10th Nov 2026 • Central Convention</small>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-workspace">
+      <!-- Left Panel: Controls & Inputs -->
+      <section class="control-panel">
+        <!-- Single / Batch Mode Switcher -->
+        <div class="mode-tabs">
+          <button class="mode-tab active" id="tabSingleGuest">Single Guest</button>
+          <button class="mode-tab" id="tabBatchGuest">Batch Guests (Multiple)</button>
+        </div>
+
+        <!-- Single Guest Form -->
+        <div class="form-container" id="singleGuestForm">
+          <div class="input-card">
+            <label for="guestNameInput" class="input-label">
+              <span>Guest Name</span>
+              <span class="badge-required">Required</span>
+            </label>
+            <div class="input-wrapper">
+              <textarea 
+                id="guestNameInput" 
+                rows="2" 
+                placeholder="Enter guest name (e.g. Janab Mohammed Farooq Sahab & Family)" 
+                autocomplete="off"
+                spellcheck="false"
+              ></textarea>
+              <button type="button" id="btnClearName" class="btn-clear" title="Clear input">✕</button>
+            </div>
+            <div class="input-hint">
+              ✨ Long names auto-wrap across 2 lines to keep calligraphy large &amp; elegant. Press <kbd>Enter</kbd> to split lines manually.
+            </div>
+            
+            <!-- Honorific / Prefix Quick Pills -->
+            <div class="quick-prefix-section">
+              <span class="prefix-label">Quick Add:</span>
+              <div class="prefix-pills" id="prefixPills">
+                <button type="button" class="pill-btn" data-prefix="Janab ">+ Janab</button>
+                <button type="button" class="pill-btn" data-prefix="Mr. & Mrs. ">+ Mr. & Mrs.</button>
+                <button type="button" class="pill-btn" data-suffix=" & Family">+ & Family</button>
+                <button type="button" class="pill-btn" data-prefix="Dr. ">+ Dr.</button>
+                <button type="button" class="pill-btn" data-prefix="Mohteram ">+ Mohteram</button>
+                <button type="button" class="pill-btn" data-prefix="Haji ">+ Haji</button>
+              </div>
+            </div>
+
+            <!-- Mobile Quick Jump Button -->
+            <button type="button" class="mobile-jump-btn" id="btnJumpToPreview">
+              <span>👁️ View Live Card Preview ↓</span>
+            </button>
+          </div>
+
+          <!-- Typography & Customization Accordion (Fixed Styling) -->
+          <div class="customization-card">
+            <div class="card-header-toggle" id="toggleTypography">
+              <div class="header-left">
+                <span class="icon-feather">🖋️</span>
+                <span class="toggle-title">Calligraphy &amp; Fine Adjustments</span>
+              </div>
+              <span class="chevron collapsed" id="typographyChevron">▼</span>
+            </div>
+
+            <div class="card-body collapsed" id="typographyContent">
+              <!-- Fixed Configuration Settings Badge -->
+              <div class="fixed-settings-badge">
+                <div class="fixed-item">
+                  <span class="fixed-label">Calligraphy Font:</span>
+                  <strong class="fixed-val">Great Vibes (Classic Wedding Calligraphy)</strong>
+                </div>
+                <div class="fixed-item">
+                  <span class="fixed-label">Placement Style:</span>
+                  <strong class="fixed-val">Directly after "To:"</strong>
+                </div>
+                <div class="fixed-item">
+                  <span class="fixed-label">Decorative Second Line:</span>
+                  <strong class="fixed-val">Auto (When Big Name)</strong>
+                </div>
+                <div class="fixed-item">
+                  <span class="fixed-label">Line 2 Text Alignment:</span>
+                  <strong class="fixed-val">Centered on Line</strong>
+                </div>
+              </div>
+
+              <!-- Font Size & Adjustments -->
+              <div class="form-row sliders-grid">
+                <div class="slider-item">
+                  <div class="slider-header">
+                    <label for="fontSizeRange">Font Size:</label>
+                    <span id="fontSizeDisplay">54px</span>
+                  </div>
+                  <input type="range" id="fontSizeRange" min="36" max="74" value="54" step="1">
+                </div>
+
+                <div class="slider-item">
+                  <div class="slider-header">
+                    <label for="yOffsetRange">Vertical Position (Y):</label>
+                    <span id="yOffsetDisplay">0px</span>
+                  </div>
+                  <input type="range" id="yOffsetRange" min="-30" max="30" value="0" step="1">
+                </div>
+
+                <div class="slider-item">
+                  <div class="slider-header">
+                    <label for="xOffsetRange">Horizontal Offset (X):</label>
+                    <span id="xOffsetDisplay">0px</span>
+                  </div>
+                  <input type="range" id="xOffsetRange" min="-50" max="60" value="0" step="1">
+                </div>
+              </div>
+
+              <!-- Color Palette -->
+              <div class="form-row">
+                <label class="sub-label">Text Color:</label>
+                <div class="color-palette" id="colorPalette">
+                  <button type="button" class="color-swatch active" data-color="#710512" style="background-color: #710512;" title="Royal Burgundy (Original)"></button>
+                  <button type="button" class="color-swatch" data-color="#55030d" style="background-color: #55030d;" title="Deep Crimson"></button>
+                  <button type="button" class="color-swatch" data-color="#FCF0D1" style="background-color: #FCF0D1;" title="Luminous Champagne (Nikah)"></button>
+                  <button type="button" class="color-swatch" data-color="#C59B27" style="background-color: #C59B27;" title="Polished Gold"></button>
+                  <button type="button" class="color-swatch" data-color="#2D1318" style="background-color: #2D1318;" title="Dark Espresso"></button>
+                  <div class="custom-color-picker">
+                    <input type="color" id="customColorInput" value="#710512" title="Pick custom color">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reset to defaults -->
+              <button type="button" id="btnResetStyles" class="btn-text-subtle">↺ Reset to Original Template Styling</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Batch Guest Form (Hidden by default) -->
+        <div class="form-container hidden" id="batchGuestForm">
+          <div class="input-card">
+            <label for="batchNamesInput" class="input-label">
+              <span>Guest Names List (One name per line)</span>
+              <span class="badge-count" id="batchCountBadge">0 Guests</span>
+            </label>
+            <textarea 
+              id="batchNamesInput" 
+              rows="8" 
+              placeholder="Janab Mohammed Farooq Sahab & Family&#10;Mr. & Mrs. Syed Lateef Mohiuddin&#10;Dr. Abdul Rahman & Family&#10;Janab Tariq Ali Khan Sahab"
+            ></textarea>
+            <div class="batch-hint">
+              💡 Each guest name generates its own <strong>individual 2-page PDF</strong>. All PDFs are bundled together into a single <strong>.ZIP</strong> file for easy download and distribution!
+            </div>
+          </div>
+
+          <div class="action-buttons-group">
+            <button type="button" id="btnDownloadBatchPDF" class="btn-primary-glow">
+              <span class="btn-icon">📦</span>
+              <span class="btn-content">
+                <strong>Generate &amp; Download All PDFs as ZIP</strong>
+                <small id="batchActionSub">One separate 2-page PDF per guest · Bundled as .zip</small>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Live Card Preview -->
+      <section class="preview-panel" id="previewPanel">
+        <div class="preview-header">
+          <div class="preview-tabs">
+            <button type="button" class="preview-tab active" id="tabPreviewPage1" data-page="1">
+              <span class="tab-label-full">Page 1 (To: Cover)</span>
+              <span class="tab-label-mobile">Page 1</span>
+            </button>
+            <button type="button" class="preview-tab" id="tabPreviewPage2" data-page="2">
+              <span class="tab-label-full">Page 2 (Invitation Details)</span>
+              <span class="tab-label-mobile">Page 2</span>
+            </button>
+            <button type="button" class="preview-tab" id="tabPreviewBoth" data-page="both">
+              <span class="tab-label-full">Side-by-Side</span>
+              <span class="tab-label-mobile">Both</span>
+            </button>
+          </div>
+
+          <div class="preview-tools">
+            <button type="button" id="btnZoomToggle" class="btn-tool" title="Toggle Fullscreen Zoom">🔍 Zoom</button>
+          </div>
+        </div>
+
+        <!-- Canvas Preview Container -->
+        <div class="preview-canvas-wrapper" id="previewCanvasWrapper">
+          <!-- Page 1 Canvas Container -->
+          <div class="card-display-box" id="page1Box">
+            <div class="card-label">Page 1 • Guest Envelope Card</div>
+            <div class="canvas-shadow-frame">
+              <canvas id="page1Canvas" width="1024" height="1536"></canvas>
+            </div>
+          </div>
+
+          <!-- Page 2 Canvas Container -->
+          <div class="card-display-box hidden" id="page2Box">
+            <div class="card-label">Page 2 • Wedding Invitation</div>
+            <div class="canvas-shadow-frame">
+              <canvas id="page2Canvas" width="1024" height="1536"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Actions (Kept only at the end) -->
+        <div class="action-buttons-group main-actions-end" id="mainActionsGroup">
+          <button type="button" class="btn-whatsapp-glow" id="btnShareWhatsApp">
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </span>
+              <span class="btn-content">
+                <strong>Share PDF via WhatsApp</strong>
+                <small>Send directly to guest</small>
+              </span>
+            </button>
+          <button type="button" class="btn-primary-glow" id="btnDownloadPDF">
+            <span class="btn-icon">📄</span>
+            <span class="btn-content">
+              <strong>Download 2-Page PDF</strong>
+              <small>Page 1: To Card • Page 2: Invitation</small>
+            </span>
+          </button>
+          <button type="button" class="mobile-jump-btn mobile-jump-top" id="btnJumpToForm">
+            <span>↑ Back to Guest Name</span>
+          </button>
+        </div>
+
+        <!-- Live Status Bar -->
+        <div class="status-bar">
+          <span class="status-indicator"></span>
+          <span id="statusText">Real-time Calligraphy Preview Active</span>
+          <span class="card-resolution-badge">1024 × 1536 • 300 DPI Ready</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal for Fullscreen Zoom Preview -->
+    <div class="modal-overlay hidden" id="zoomModal">
+      <div class="modal-content">
+        <button type="button" class="modal-close" id="btnCloseZoom">✕</button>
+        <div class="modal-body" id="modalCanvasContainer">
+          <!-- Image will be injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
